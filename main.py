@@ -36,7 +36,7 @@ def generate_pdf(id_number, preview):
         https: // github.com / moestergaard / PreviewRecipe / blob / 13
         b23ec728c8d34c2360c51248c89316593d052f / Data / test.xlsx
         """
-        github_file_url = "https://github.com/moestergaard/PreviewRecipe/raw/13b23ec728c8d34c2360c51248c89316593d052f/Data/test.xlsx"
+        github_file_url = "https://github.com/moestergaard/PreviewRecipe/raw/af557301eff8106ebdc936933fac4ef6c4236456/Data/test.xlsx"
         #github_file_url = "https://github.com/moestergaard/PreviewRecipe/raw/1f3ced3d6d066aa72005051d17a6839390de00e2/Data/test.xlsx"
 
         # Download the Excel file from GitHub
