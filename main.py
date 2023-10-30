@@ -36,13 +36,14 @@ def generate_pdf(id_number, preview):
         https: // github.com / moestergaard / PreviewRecipe / blob / 13
         b23ec728c8d34c2360c51248c89316593d052f / Data / test.xlsx
         """
-        onedrive_file = "https://1drv.ms/x/s!ArzXHA5LmmgLjOp4msGkUEaeyTGc9Q?e=iPgGyc"
+        # onedrive_file = "https://1drv.ms/x/s!ArzXHA5LmmgLjOp4msGkUEaeyTGc9Q?e=iPgGyc"
+        github_file_url = "https://github.com/moestergaard/PreviewRecipe/raw/916a7f89f8b898a9d159608d2158c2594c50afef/Data/test.xlsx"
         # github_file_url = "https://github.com/moestergaard/PreviewRecipe/raw/880939f85d21ba247b92b63029666a2350c9d32d/Data/test.xlsx"
         # github_file_url = "https://github.com/moestergaard/PreviewRecipe/raw/af557301eff8106ebdc936933fac4ef6c4236456/Data/test.xlsx"
         #github_file_url = "https://github.com/moestergaard/PreviewRecipe/raw/1f3ced3d6d066aa72005051d17a6839390de00e2/Data/test.xlsx"
 
         # Download the Excel file from GitHub
-        response = requests.get(onedrive_file)
+        response = requests.get(github_file_url)
         if response.status_code == 200:
             with tempfile.NamedTemporaryFile(suffix=".xlsx",
                                              delete=False) as temp_xlsx:
