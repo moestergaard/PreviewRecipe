@@ -1,11 +1,13 @@
 import tkinter as tk
 from tkinter import messagebox
 import openpyxl
+from openpyxl.reader.excel import load_workbook
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from io import BytesIO
 import tempfile
 import subprocess
+import requests
 
 pdf_filenames = []
 pdf_viewer_commands = ['open', 'evince', 'xdg-open', 'acroread', 'okular', 'atril']
@@ -22,8 +24,27 @@ def open_pdf_with_viewer(pdf_path):
 def generate_pdf(id_number, preview):
     try:
         # Load the Excel file
+        """
+        https: // github.com / moestergaard / PreviewRecipe / blob / 1
+        f3ced3d6d066aa72005051d17a6839390de00e2 / Data / test.xlsx
         wb = openpyxl.load_workbook('/Users/martinoestergaard/OneDrive/Documents/Skole/AU/ITKO/1. semester/DTIV/DTIV Test/test.xlsx')
         sheet = wb.active
+        """
+
+        github_file_url = "https://github.com/moestergaard/PreviewRecipe/raw/1f3ced3d6d066aa72005051d17a6839390de00e2/Data/test.xlsx"
+
+        # Download the Excel file from GitHub
+        response = requests.get(github_file_url)
+        if response.status_code == 200:
+            with tempfile.NamedTemporaryFile(suffix=".xlsx",
+                                             delete=False) as temp_xlsx:
+                temp_xlsx.write(response.content)
+            # Load the downloaded Excel file
+            wb = load_workbook(temp_xlsx.name)
+            sheet = wb.active
+        else:
+            print("Failed to download the Excel file from GitHub.")
+            exit()
 
         # Find the row with the matching ID number
         for row in sheet.iter_rows(values_only=True):
