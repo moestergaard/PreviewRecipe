@@ -7,7 +7,7 @@ from io import BytesIO
 import tempfile
 import subprocess
 
-
+pdf_filenames = []
 pdf_viewer_commands = ['open', 'evince', 'xdg-open', 'acroread', 'okular', 'atril']
 
 def open_pdf_with_viewer(pdf_path):
@@ -78,56 +78,6 @@ def generate_pdf(id_number, preview):
     except Exception as e:
         messagebox.showerror("Error", str(e))
 
-"""
-def generate_preview_pdf(id_number):
-    try:
-        # Load the Excel file
-        wb = openpyxl.load_workbook('/Users/martinoestergaard/OneDrive/Documents/Skole/AU/ITKO/1. semester/DTIV/DTIV Test/test.xlsx')
-        sheet = wb.active
-
-        # Find the row with the matching ID number
-        for row in sheet.iter_rows(values_only=True):
-            if row[0] == id_number:
-                # Create a PDF with the rest of the row data in-memory
-                pdf_data = BytesIO()
-                c = canvas.Canvas(pdf_data, pagesize=letter)
-                y = 500  # Starting Y coordinate for content
-
-                image_path = row[len(row)-1]
-                x_image, y_image = 100, 550
-                width, height = 200, 200
-
-                if image_path is not None:
-                    try:
-                        c.drawImage(image_path, x_image, y_image, width,
-                                    height)
-                    except Exception as e:
-                        messagebox.showerror("Error", str(e))
-
-                for value in row[1:-1]:
-                    c.drawString(100, y, str(value))
-                    y -= 15  # Move up for the next value
-
-                # Closes the current page
-                c.showPage()
-                # Saves and closes the PDF document in the file
-                c.save()
-
-                with tempfile.NamedTemporaryFile(suffix=".pdf",
-                                                 delete=False) as temp_pdf:
-                    temp_pdf.write(pdf_data.getvalue())
-
-                if not open_pdf_with_viewer(temp_pdf.name):
-                    messagebox.showerror("Error",
-                                         "Unable to open the PDF. Please install a PDF viewer.")
-
-                return
-
-        messagebox.showerror("ID not found", f"ID number '{id_number}' not found in the Excel file.")
-
-    except Exception as e:
-        messagebox.showerror("Error", str(e))
-        """
 
 def preview():
     id_number = id_entry.get()
@@ -172,14 +122,6 @@ preview_button.pack(pady=5)
 
 udgiv_button = tk.Button(window, text="Udgiv", command=udgiv)
 udgiv_button.pack(pady=5)
-
-"""
-preview_label = tk.Label(window, text="Preview: ")
-preview_label.pack()
-
-udgiv_label = tk.Label(window, text="Udgiv: ")
-udgiv_label.pack()
-"""
 
 # Start the tkinter main loop
 window.mainloop()
