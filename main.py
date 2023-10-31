@@ -24,24 +24,9 @@ def open_pdf_with_viewer(pdf_path):
 def generate_pdf(id_number, preview):
     try:
         # Load the Excel file
-        """
-        https: // github.com / moestergaard / PreviewRecipe / blob / 1
-        f3ced3d6d066aa72005051d17a6839390de00e2 / Data / test.xlsx
-        wb = openpyxl.load_workbook('/Users/martinoestergaard/OneDrive/Documents/Skole/AU/ITKO/1. semester/DTIV/DTIV Test/test.xlsx')
-        sheet = wb.active
-        """
+        github_file_url = "https://github.com/moestergaard/PreviewRecipe/raw/ebace15b4e687d2ead456565d5a044ca65ea0a65/Data/test.xlsx"
 
         """
-        Data / test.xlsx
-        https: // github.com / moestergaard / PreviewRecipe / blob / 13
-        b23ec728c8d34c2360c51248c89316593d052f / Data / test.xlsx
-        """
-        # onedrive_file = "https://1drv.ms/x/s!ArzXHA5LmmgLjOp4msGkUEaeyTGc9Q?e=iPgGyc"
-        github_file_url = "https://github.com/moestergaard/PreviewRecipe/raw/7f19b13775ccdff026ef60200b53b4784057be26/Data/test.xlsx"
-        # github_file_url = "https://github.com/moestergaard/PreviewRecipe/raw/880939f85d21ba247b92b63029666a2350c9d32d/Data/test.xlsx"
-        # github_file_url = "https://github.com/moestergaard/PreviewRecipe/raw/af557301eff8106ebdc936933fac4ef6c4236456/Data/test.xlsx"
-        #github_file_url = "https://github.com/moestergaard/PreviewRecipe/raw/1f3ced3d6d066aa72005051d17a6839390de00e2/Data/test.xlsx"
-
         # Download the Excel file from GitHub
         response = requests.get(github_file_url)
         if response.status_code == 200:
@@ -54,6 +39,13 @@ def generate_pdf(id_number, preview):
         else:
             print("Failed to download the Excel file from GitHub.")
             exit()
+        """
+
+        wb = openpyxl.load_workbook(
+            '/Users/martinoestergaard/OneDrive/Martin/Documents/Skole/AU/ITKO/1. semester/DTIV/DTIV Test/TestSenestGitHub.xlsx')
+        sheet = wb.active
+
+
 
         # Find the row with the matching ID number
         for row in sheet.iter_rows(values_only=True):
@@ -138,7 +130,7 @@ def udgiv():
 
 # Create the main window
 window = tk.Tk()
-window.title("ID Number Preview and Udgiv")
+window.title("Admin Tool Backend")
 
 # Create and place widgets
 id_label = tk.Label(window, text="Enter ID Number:")
